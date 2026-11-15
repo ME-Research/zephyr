@@ -1,0 +1,25 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  A PCI function of the Intel CSME's root space or private bus with no
+  other driver, which must be quiesced (MSI off, DMA stopped, D3) before the
+  engine resets or powers down. reg is its configuration space.
+
+compatible: "intel,csme-pci-function"
+
+include: base.yaml
+
+properties:
+  reg:
+    required: true
+
+  bar:
+    type: int
+    description: |
+      Address to program in BAR0 if the function is a bus master and its
+      DMA must be stopped through its registers.
+
+  intel,smbus:
+    type: boolean
+    description: The function is an SMBus (SMT) controller.

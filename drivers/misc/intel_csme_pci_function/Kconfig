@@ -1,0 +1,11 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config INTEL_CSME_PCI_FUNCTION
+	bool "Intel CSME PCI functions without a driver (power management)"
+	default y
+	depends on DT_HAS_INTEL_CSME_PCI_FUNCTION_ENABLED
+	depends on PM_DEVICE
+	help
+	  PCI functions the Intel CSME must quiesce and put in D3 before it
+	  resets or powers down, with no other driver: suspending one does it.
