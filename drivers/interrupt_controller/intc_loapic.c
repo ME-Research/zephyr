@@ -187,7 +187,7 @@ static int loapic_init(const struct device *unused)
 
 uint32_t z_loapic_irq_base(void)
 {
-	return z_ioapic_num_rtes();
+	return IS_ENABLED(CONFIG_IOAPIC) ? z_ioapic_num_rtes() : 0U;
 }
 
 /**

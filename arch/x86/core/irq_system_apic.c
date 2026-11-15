@@ -25,8 +25,15 @@
 #include <zephyr/irq.h>
 #include <zephyr/linker/sections.h>
 
-#define IS_IOAPIC_IRQ(irq)  ((irq) < z_loapic_irq_base())
+#define IS_IOAPIC_IRQ(irq)  (IS_ENABLED(CONFIG_IOAPIC) && ((irq) < z_loapic_irq_base()))
 #define HARDWARE_IRQ_LIMIT ((z_loapic_irq_base() + LOAPIC_IRQ_COUNT) - 1)
+
+/* Without an IO-APIC, IRQs above the local APIC's LVT lines are only
+ * message-signalled: the device writes the vector to the local APIC
+ * itself, so there is nothing to program or mask at the APIC. The device's
+ * own MSI enable masks it.
+ */
+#define IS_MSI_ONLY_IRQ(irq) (!IS_ENABLED(CONFIG_IOAPIC) && ((irq) > HARDWARE_IRQ_LIMIT))
 
 /**
  * @brief Program interrupt controller
@@ -52,6 +59,10 @@ __boot_func
 void z_irq_controller_irq_config(unsigned int vector, unsigned int irq,
 				 uint32_t flags)
 {
+	if (IS_MSI_ONLY_IRQ(irq)) {
+		return;
+	}
+
 	__ASSERT(irq <= HARDWARE_IRQ_LIMIT, "invalid irq line");
 
 	if (IS_IOAPIC_IRQ(irq)) {
@@ -77,6 +88,10 @@ void z_irq_controller_irq_config(unsigned int vector, unsigned int irq,
  */
 void arch_irq_enable(unsigned int irq)
 {
+	if (IS_MSI_ONLY_IRQ(irq)) {
+		return;
+	}
+
 	if (IS_IOAPIC_IRQ(irq)) {
 		z_ioapic_irq_enable(irq);
 	} else {
@@ -94,6 +109,10 @@ void arch_irq_enable(unsigned int irq)
  */
 void arch_irq_disable(unsigned int irq)
 {
+	if (IS_MSI_ONLY_IRQ(irq)) {
+		return;
+	}
+
 	if (IS_IOAPIC_IRQ(irq)) {
 		z_ioapic_irq_disable(irq);
 	} else {
