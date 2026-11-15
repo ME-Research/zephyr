@@ -1,0 +1,12 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config SOC_INTEL_CSME11
+	bool
+	help
+	  Intel Converged Security and Management Engine 11 (Sunrise Point
+	  PCH): a Lakemont ("minute IA") core with SRAM, a local APIC and the
+	  CSME's own devices.
+
+config SOC
+	default "intel_csme11" if SOC_INTEL_CSME11

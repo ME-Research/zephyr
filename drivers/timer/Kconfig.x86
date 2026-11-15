@@ -5,6 +5,7 @@
 
 choice
 	prompt "Default System Timer"
+	default INTEL_CSME_APP_TIMER if SOC_INTEL_CSME11
 	default HPET_TIMER if SOC_FAMILY_INTEL_ISH || SOC_ATOM || SOC_LAKEMONT
 	default APIC_TSC_DEADLINE_TIMER
 	depends on X86

@@ -1,0 +1,17 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+if SOC_INTEL_CSME11
+
+config SYS_CLOCK_HW_CYCLES_PER_SEC
+	default $(dt_nodelabel_int_prop,app_timer,clock-frequency)
+
+# Not a PC: no BIOS or multiboot loader (the boot ROM loads the ELF image),
+# no 8259 PIC, no IO-APIC, no legacy UART.
+config X86_PC_COMPATIBLE
+	default n
+
+config BUILD_OUTPUT_BIN
+	default n
+
+endif
