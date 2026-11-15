@@ -30,6 +30,7 @@ config INTEL_CSME_APP_TIMER
 	select LOAPIC
 	select TICKLESS_CAPABLE
 	select TIMER_HAS_64BIT_CYCLE_COUNTER
+	select SYSTEM_TIMER_HAS_DISABLE_SUPPORT
 	help
 	  The CSME 11 application timer (64-bit counter and comparator,
 	  interrupting by MSI) as the system timer.

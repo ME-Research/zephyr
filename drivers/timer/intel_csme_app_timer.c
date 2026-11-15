@@ -110,6 +110,13 @@ void sys_clock_no_timeout(void)
 	app_timer_set_compare(UINT64_MAX);
 }
 
+/* The CSME kernel disarms the timer before the engine resets */
+void sys_clock_disable(void)
+{
+	irq_disable(DT_INST_IRQN(0));
+	sys_write32(sys_read32(TMR_ARM) & ~BIT(0), TMR_ARM);
+}
+
 __boot_func
 static int sys_clock_driver_init(void)
 {
