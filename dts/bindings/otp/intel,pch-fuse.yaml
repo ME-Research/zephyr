@@ -1,0 +1,21 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  Intel PCH fuse controller as the CSME reaches it: the fuse array and the
+  controller are two IOSF sideband agents ("intel,csme-sb-agent" nodes
+  behind the ATT). The OTP address space is the array: the shadow copy at
+  0x000-0x3ff (0x80 bytes per bank), the sensed copy at 0x400-0x7ff.
+
+compatible: "intel,pch-fuse"
+
+properties:
+  intel,array:
+    type: phandle
+    required: true
+    description: The sideband agent of the fuse array
+
+  intel,controller:
+    type: phandle
+    required: true
+    description: The sideband agent of the fuse controller

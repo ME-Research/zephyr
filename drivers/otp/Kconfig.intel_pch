@@ -1,0 +1,12 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config OTP_INTEL_PCH_FUSE
+	bool "Intel PCH fuse controller (CSME view)"
+	default y
+	depends on DT_HAS_INTEL_PCH_FUSE_ENABLED
+	depends on INTEL_CSME_ATT
+	help
+	  The Intel PCH's fuse controller as the CSME reaches it through ATT
+	  sideband windows: the shadow and sensed fuse arrays, margin sensing
+	  and shadow writes.
