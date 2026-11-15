@@ -107,23 +107,27 @@
 
 			/* AON agent: registers and always-on SRAM (+0x2000) */
 			aon: memory@f5020000 {
-				compatible = "intel,csme-sb-agent";
+				compatible = "intel,csme-aon";
 				reg = <0xf5020000 0x8000>;
+				sram-offset = <0x2000>;
+				sram-size = <0xc00>;
 				intel,sb-port = <0xb9>;
 				intel,sb-attr = <0x100>;
 			};
 
 			/* PRTC: always-on registers (+0x1000) */
 			prtc: rtc@f5028000 {
-				compatible = "intel,csme-sb-agent";
+				compatible = "intel,csme-prtc";
 				reg = <0xf5028000 0x2000>;
+				regs-offset = <0x1000>;
+				size = <0x100>;
 				intel,sb-port = <0x8e>;
 				intel,sb-attr = <0x100>;
 			};
 
 			/* DRNG */
 			drng: rng@f5038000 {
-				compatible = "intel,csme-sb-agent";
+				compatible = "intel,csme-drng";
 				reg = <0xf5038000 0x2000>;
 				intel,sb-port = <0xd2>;
 			};
