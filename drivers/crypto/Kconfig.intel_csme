@@ -1,0 +1,11 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config CRYPTO_INTEL_CSME
+	bool "Intel CSME crypto engine"
+	default y
+	depends on DT_HAS_INTEL_CSME_CRYPTO_ENABLED
+	help
+	  The Intel CSME's crypto engine: its AES-P unit as an AES-ECB cipher
+	  with raw keys or keys held in its secure key storage (SKS), and SKS
+	  key derivation.

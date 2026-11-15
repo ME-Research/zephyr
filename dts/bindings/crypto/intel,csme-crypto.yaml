@@ -1,0 +1,15 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  Intel CSME crypto engine: BAR0 of PCI function 0:01.0 in the CSME root
+  space (the boot ROM programs it), with AES, AES-P, SHA and secure key
+  storage (SKS) units.
+
+compatible: "intel,csme-crypto"
+
+include: base.yaml
+
+properties:
+  reg:
+    required: true
