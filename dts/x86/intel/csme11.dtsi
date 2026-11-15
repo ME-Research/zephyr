@@ -402,6 +402,36 @@
 			};
 		};
 
+		/* Fixed-BAR blocks of the CSME-private bus without drivers: the
+		 * PTT command/response buffer, the Boot Guard block (policy at
+		 * +0x1000) and the CPU message channel
+		 */
+		ptt_crb: syscon@f0090000 {
+			compatible = "syscon";
+			reg = <0xf0090000 0x2000>;
+		};
+
+		boot_guard: syscon@f0098000 {
+			compatible = "syscon";
+			reg = <0xf0098000 0x2000>;
+		};
+
+		cpu_channel: syscon@f00a0000 {
+			compatible = "syscon";
+			reg = <0xf00a0000 0x1000>;
+		};
+
+		/* Trace hub (ATT window 3): STH and NPK register spaces */
+		trace_hub_sth: syscon@f7000000 {
+			compatible = "syscon";
+			reg = <0xf7000000 0x400000>;
+		};
+
+		trace_hub_npk: syscon@f7400000 {
+			compatible = "syscon";
+			reg = <0xf7400000 0x100000>;
+		};
+
 		/* An STH software channel of the trace hub (ATT window 3) */
 		sth_console: trace@f7012040 {
 			compatible = "intel,npk-sth";
