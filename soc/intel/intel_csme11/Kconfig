@@ -5,3 +5,4 @@ config SOC_INTEL_CSME11
 	select X86
 	select CPU_LAKEMONT_VALUE
 	select LOAPIC
+	select HAS_POWEROFF
