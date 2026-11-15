@@ -1,0 +1,25 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  The Intel PCH's PRTC agent (sideband port 0x8e) as the CSME reaches it
+  through an ATT window. Its always-on registers are exposed as
+  battery-backed RAM: offset 0 is a free-running seconds counter
+  (read-only), offset 0x1c bit 0 a busy flag writes wait for, offset 0x38
+  firmware flags and offset 0x40 on scratch registers. They survive CSME
+  resets and host power states.
+
+compatible: "intel,csme-prtc"
+
+include: intel,csme-sb-device.yaml
+
+properties:
+  regs-offset:
+    type: int
+    required: true
+    description: Offset of the always-on registers in the agent's window
+
+  size:
+    type: int
+    required: true
+    description: Size of the always-on register block in bytes

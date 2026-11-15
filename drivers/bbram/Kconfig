@@ -32,6 +32,7 @@ config BBRAM_INIT_PRIORITY
 
 # zephyr-keep-sorted-start
 source "drivers/bbram/Kconfig.bbram_emul"
+source "drivers/bbram/Kconfig.intel_csme"
 source "drivers/bbram/Kconfig.it8xxx2"
 source "drivers/bbram/Kconfig.mc146818"
 source "drivers/bbram/Kconfig.microchip"

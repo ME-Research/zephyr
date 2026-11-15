@@ -1,0 +1,11 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config BBRAM_INTEL_CSME_PRTC
+	bool "Intel CSME PRTC always-on registers"
+	default y
+	depends on DT_HAS_INTEL_CSME_PRTC_ENABLED
+	depends on INTEL_CSME_ATT
+	help
+	  The always-on registers of the Intel PCH's PRTC agent, reached by
+	  the CSME through an ATT sideband window, as battery-backed RAM.
