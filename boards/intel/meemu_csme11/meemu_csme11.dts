@@ -1,0 +1,32 @@
+/*
+ * Copyright The Zephyr Project Contributors
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The CSME 11 as meemu (mefwtool-c/src/emu) emulates it, booted by the
+ * replacement boot ROM (mefwtool-c/bootrom), which loads zephyr.elf from the
+ * ME region of the flash.
+ */
+
+/dts-v1/;
+
+#include <intel/csme11.dtsi>
+
+/ {
+	model = "Intel CSME 11 (meemu)";
+	compatible = "intel,csme11";
+
+	chosen {
+		zephyr,sram = &sram0;
+		zephyr,console = &sth_console;
+	};
+
+	/* SRAM from 0x1000: page 0 stays unused so that nothing is linked at
+	 * NULL. The boot ROM keeps its stack in the last 16 KiB of the first
+	 * MiB, which is free again once Zephyr runs.
+	 */
+	sram0: memory@1000 {
+		device_type = "memory";
+		reg = <0x1000 (DT_SIZE_M(1) - 0x1000)>;
+	};
+};

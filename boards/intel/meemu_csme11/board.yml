@@ -1,0 +1,6 @@
+board:
+  name: meemu_csme11
+  full_name: CSME 11 in the meemu emulator
+  vendor: intel
+  socs:
+    - name: intel_csme11

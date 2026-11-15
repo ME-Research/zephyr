@@ -1,0 +1,14 @@
+identifier: meemu_csme11
+name: CSME 11 in the meemu emulator
+type: sim
+arch: x86
+toolchain:
+  - zephyr
+  - cross-compile
+ram: 1020
+testing:
+  ignore_tags:
+    - net
+    - bluetooth
+supported: []
+vendor: intel
