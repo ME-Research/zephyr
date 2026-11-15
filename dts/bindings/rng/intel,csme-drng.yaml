@@ -1,0 +1,10 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  Intel PCH digital random number generator as the CSME reaches it: an
+  IOSF sideband agent behind an ATT window. The boot ROM starts it.
+
+compatible: "intel,csme-drng"
+
+include: intel,csme-sb-device.yaml

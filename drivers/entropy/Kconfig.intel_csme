@@ -1,0 +1,12 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config ENTROPY_INTEL_CSME_DRNG
+	bool "Intel CSME DRNG driver"
+	default y
+	depends on DT_HAS_INTEL_CSME_DRNG_ENABLED
+	select ENTROPY_HAS_DRIVER
+	depends on INTEL_CSME_ATT
+	help
+	  The PCH's digital random number generator, reached by the Intel CSME
+	  through an ATT sideband window. The boot ROM starts it.
