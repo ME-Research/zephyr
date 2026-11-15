@@ -1,0 +1,16 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config INTEL_CSME_HECI
+	bool "Intel CSME HECI firmware status (engine side)"
+	default y
+	depends on DT_HAS_INTEL_CSME_HECI_ENABLED
+	help
+	  The engine side of the Intel CSME's HECI functions: the firmware
+	  status registers the host reads, the engine's CSR and its host
+	  memory (UMA) request.
+
+config INTEL_CSME_HECI_INIT_PRIORITY
+	int "Intel CSME HECI init priority"
+	default 20
+	depends on INTEL_CSME_HECI

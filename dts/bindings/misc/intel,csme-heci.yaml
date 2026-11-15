@@ -1,0 +1,15 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  Engine side of an Intel CSME HECI function (fixed BAR on the CSME-private
+  bus): the firmware status registers HFSTS1-6 the host reads, the engine's
+  control and status register and, on HECI1, the host memory request.
+
+compatible: "intel,csme-heci"
+
+include: base.yaml
+
+properties:
+  reg:
+    required: true
