@@ -58,6 +58,14 @@
 			clock-frequency = <1000000000>;
 		};
 
+		/* PCH SPI flash controller: root space 0:19.0 BAR0 (the boot ROM
+		 * programs it)
+		 */
+		spi_flash: flash-controller@f461e000 {
+			compatible = "intel,pch-spi-flash";
+			reg = <0xf461e000 0x1000>;
+		};
+
 		/* PCH PMC: root space 0:1a.0 (BAR0 registers, BAR1 SRAM) */
 		pmc: pmc@f461a000 {
 			compatible = "intel,pch-pmc";
