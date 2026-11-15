@@ -51,6 +51,222 @@
 			clock-frequency = <1000000000>;
 		};
 
+		/* Address translation table: primary and sideband windows. The
+		 * sideband agents below are mapped on demand at these addresses
+		 * (the ones the CSME kernel uses).
+		 */
+		att: att@f00a8000 {
+			compatible = "intel,csme-att";
+			reg = <0xf00a8000 0x1000>, <0xf00a9000 0x1000>;
+			reg-names = "primary", "sideband";
+			sideband-windows = <10>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges;
+
+			/* DFX aggregator */
+			sb_dfx: dfx@f5010000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5010000 0x1000>;
+				intel,sb-port = <0xb7>;
+			};
+
+			/* DCI */
+			sb_dci: dci@f5011000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5011000 0x1000>;
+				intel,sb-port = <0xb8>;
+			};
+
+			/* Port 0xbc, flags 0x10 */
+			sb_bc_10: sb@f5012000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5012000 0x2000>;
+				intel,sb-port = <0xbc>;
+				intel,sb-flags = <0x10>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* Fuse controller: shadow and sensed fuse data */
+			fuse_array: fuse@f5018000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5018000 0x4000>;
+				intel,sb-port = <0xd5>;
+				intel,sb-flags = <0x31>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* Fuse controller: control (access grant, margin reads) */
+			fuse_ctrl: fuse@f501c000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf501c000 0x4000>;
+				intel,sb-port = <0xd5>;
+				intel,sb-flags = <0x34>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* AON agent: registers and always-on SRAM (+0x2000) */
+			aon: memory@f5020000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5020000 0x8000>;
+				intel,sb-port = <0xb9>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* PRTC: always-on registers (+0x1000) */
+			prtc: rtc@f5028000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5028000 0x2000>;
+				intel,sb-port = <0x8e>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* DRNG */
+			drng: rng@f5038000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5038000 0x2000>;
+				intel,sb-port = <0xd2>;
+			};
+
+			/* ICC port 0xa8 */
+			icc_a8: clock@f5050000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5050000 0x10000>;
+				intel,sb-port = <0xa8>;
+				intel,sb-flags = <0x30>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* ICC port 0xa9 */
+			icc_a9: clock@f5060000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5060000 0x10000>;
+				intel,sb-port = <0xa9>;
+				intel,sb-flags = <0x30>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* ICC port 0xba */
+			icc_ba: clock@f5070000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5070000 0x10000>;
+				intel,sb-port = <0xba>;
+				intel,sb-flags = <0x30>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* ICC port 0xbb */
+			icc_bb: clock@f5080000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5080000 0x10000>;
+				intel,sb-port = <0xbb>;
+				intel,sb-flags = <0x30>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* ICC port 0xbc */
+			icc_bc: clock@f5090000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5090000 0x10000>;
+				intel,sb-port = <0xbc>;
+				intel,sb-flags = <0x30>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* ICC port 0xbd */
+			icc_bd: clock@f50a0000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf50a0000 0x10000>;
+				intel,sb-port = <0xbd>;
+				intel,sb-flags = <0x30>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* ICC port 0xdc */
+			icc_dc: clock@f50b0000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf50b0000 0x10000>;
+				intel,sb-port = <0xdc>;
+				intel,sb-flags = <0x30>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* ICC port 0xe9 */
+			icc_e9: clock@f50c0000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf50c0000 0x10000>;
+				intel,sb-port = <0xe9>;
+				intel,sb-flags = <0x30>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* ICC port 0xea */
+			icc_ea: clock@f50d0000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf50d0000 0x10000>;
+				intel,sb-port = <0xea>;
+				intel,sb-flags = <0x30>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* ICC port 0xed */
+			icc_ed: clock@f50e0000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf50e0000 0x10000>;
+				intel,sb-port = <0xed>;
+				intel,sb-flags = <0x30>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* ICC port 0x8f */
+			icc_8f: clock@f50f0000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf50f0000 0x10000>;
+				intel,sb-port = <0x8f>;
+				intel,sb-flags = <0x30>;
+				intel,sb-attr = <0x100>;
+			};
+
+			/* Port 0xee, flags 0x10 */
+			sb_ee_10: sb@f5200000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5200000 0x10000>;
+				intel,sb-port = <0xee>;
+				intel,sb-flags = <0x10>;
+			};
+
+			/* GPIO communities (the CSME kernel maps them all at
+			 * 0xf00b9000, one at a time)
+			 */
+			gpio_ac: gpio@f5210000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5210000 0x1000>;
+				intel,sb-port = <0xac>;
+				intel,sb-attr = <0x100>;
+			};
+
+			gpio_ad: gpio@f5211000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5211000 0x1000>;
+				intel,sb-port = <0xad>;
+				intel,sb-attr = <0x100>;
+			};
+
+			gpio_ae: gpio@f5212000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5212000 0x1000>;
+				intel,sb-port = <0xae>;
+				intel,sb-attr = <0x100>;
+			};
+
+			gpio_af: gpio@f5213000 {
+				compatible = "intel,csme-sb-agent";
+				reg = <0xf5213000 0x1000>;
+				intel,sb-port = <0xaf>;
+				intel,sb-attr = <0x100>;
+			};
+		};
+
 		/* An STH software channel of the trace hub (ATT window 3) */
 		sth_console: trace@f7012040 {
 			compatible = "intel,npk-sth";
