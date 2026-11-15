@@ -1,0 +1,21 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  Intel PCH power management controller as the CSME drives it: PCI
+  function 0:1a.0 of the CSME root space. "regs" is BAR0 (power-event
+  status, the host-boot handshake, IPC messages, reset and power-down
+  requests), "sram" BAR1 (firmware patch and CPU descriptor SRAM), "cfg"
+  its configuration space (patch interface, version). The driver programs
+  the BARs.
+
+compatible: "intel,pch-pmc"
+
+include: base.yaml
+
+properties:
+  reg:
+    required: true
+
+  reg-names:
+    required: true

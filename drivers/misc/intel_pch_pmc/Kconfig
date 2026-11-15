@@ -1,0 +1,16 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config INTEL_PCH_PMC
+	bool "Intel PCH PMC (CSME view)"
+	default y
+	depends on DT_HAS_INTEL_PCH_PMC_ENABLED
+	help
+	  The Intel PCH power management controller as the CSME drives it:
+	  power-event status, IPC messages, retention and patch SRAM, and the
+	  CSME reset, power-down and platform reset requests.
+
+config INTEL_PCH_PMC_INIT_PRIORITY
+	int "Intel PCH PMC init priority"
+	default 20
+	depends on INTEL_PCH_PMC
