@@ -31,6 +31,13 @@
 		#interrupt-cells = <3>;
 	};
 
+	/* PCH fuse controller: two sideband agents behind the ATT */
+	fuses: fuse-controller {
+		compatible = "intel,pch-fuse";
+		intel,array = <&fuse_array>;
+		intel,controller = <&fuse_ctrl>;
+	};
+
 	soc {
 		compatible = "simple-bus";
 		ranges;
