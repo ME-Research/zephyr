@@ -242,6 +242,15 @@ config UART_MCUMGR_RAW_PROTOCOL
 
 endif # UART_MCUMGR
 
+config INTEL_STH_CONSOLE
+	bool "Use an Intel trace hub STH channel as the console"
+	depends on DT_HAS_INTEL_NPK_STH_ENABLED
+	select CONSOLE_HAS_DRIVER
+	default y
+	help
+	  Print console output as D8 packets on an Intel trace hub (North
+	  Peak) software trace channel, one line per FLAG packet.
+
 config XTENSA_SIM_CONSOLE
 	bool "Use Xtensa simulator console"
 	depends on SIMULATOR_XTENSA

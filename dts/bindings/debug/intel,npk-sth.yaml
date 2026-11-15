@@ -1,0 +1,17 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  Intel trace hub (North Peak) software trace channel: one 64-byte STH
+  channel (+0x00 Dn, +0x08 DnM, +0x10 DnTS, +0x18 DnMTS, +0x20 USER,
+  +0x28 USER_TS, +0x30 FLAG, +0x34 FLAG_TS). A write to Dn emits a data
+  packet of the access size. Used as a console: one D8 write per byte, a
+  FLAG write at each line end.
+
+compatible: "intel,npk-sth"
+
+include: base.yaml
+
+properties:
+  reg:
+    required: true
