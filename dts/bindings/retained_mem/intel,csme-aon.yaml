@@ -1,0 +1,24 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  The Intel PCH's AON agent (sideband port 0xb9) as the CSME reaches it
+  through an ATT window: agent registers (+0x54 PMCSR, +0x64 bit 2 "CSME
+  down" flag) and the always-on SRAM, exposed as retained memory. The SRAM
+  keeps its contents across CSME resets and host Sx states and is lost
+  with the suspend well.
+
+compatible: "intel,csme-aon"
+
+include: intel,csme-sb-device.yaml
+
+properties:
+  sram-offset:
+    type: int
+    required: true
+    description: Offset of the always-on SRAM in the agent's window
+
+  sram-size:
+    type: int
+    required: true
+    description: Size of the always-on SRAM in bytes

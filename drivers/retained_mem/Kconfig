@@ -35,6 +35,7 @@ source "subsys/logging/Kconfig.template.log_config"
 
 # zephyr-keep-sorted-start
 source "drivers/retained_mem/Kconfig.gd32"
+source "drivers/retained_mem/Kconfig.intel_csme"
 source "drivers/retained_mem/Kconfig.nrf"
 source "drivers/retained_mem/Kconfig.rv3028"
 source "drivers/retained_mem/Kconfig.silabs"

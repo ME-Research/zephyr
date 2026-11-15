@@ -1,0 +1,12 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config RETAINED_MEM_INTEL_CSME_AON
+	bool "Intel CSME AON SRAM retained memory driver"
+	default y
+	depends on DT_HAS_INTEL_CSME_AON_ENABLED
+	depends on INTEL_CSME_ATT
+	help
+	  The always-on SRAM of the Intel PCH's AON agent, reached by the CSME
+	  through an ATT sideband window. It keeps its contents across CSME
+	  resets and host sleep states.
