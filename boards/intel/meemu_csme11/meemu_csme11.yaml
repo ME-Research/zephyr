@@ -10,5 +10,11 @@ testing:
   ignore_tags:
     - net
     - bluetooth
-supported: []
+supported:
+  - entropy
+  - flash
+  - crypto
+  - retained_mem
+  - bbram
+  - otp
 vendor: intel
