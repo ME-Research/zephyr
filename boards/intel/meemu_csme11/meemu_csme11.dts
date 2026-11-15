@@ -19,6 +19,7 @@
 	chosen {
 		zephyr,sram = &sram0;
 		zephyr,console = &sth_console;
+		zephyr,entropy = &drng;
 	};
 
 	/* SRAM from 0x1000: page 0 stays unused so that nothing is linked at
