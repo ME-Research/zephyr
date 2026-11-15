@@ -1,0 +1,33 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  Intel CSME 11 application timer: a free-running 64-bit counter with one
+  comparator, PCI function 0:01.1 on the CSME-private bus. The comparator
+  fires when the counter reaches the compare value, so a value written in the
+  past is missed. Its interrupt is message-signalled (MSI to the local APIC).
+
+  Registers: "regs" (BAR0) +0x08/0x0c counter, +0x10/0x14 compare,
+  +0x18 bit 0 interrupt status (write 1 to clear), +0x1c bit 0 arm;
+  "ctl" (BAR5) +0x00 bit 0 enable, +0x04 bit 0 interrupt mask;
+  "cfg" (PCI configuration space) MSI control +0x8c (bit 16 enable),
+  address +0x90, data +0x98.
+
+compatible: "intel,csme-app-timer"
+
+include: base.yaml
+
+properties:
+  reg:
+    required: true
+
+  reg-names:
+    required: true
+
+  interrupts:
+    required: true
+
+  clock-frequency:
+    type: int
+    required: true
+    description: Counter rate in Hz
