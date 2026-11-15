@@ -1,0 +1,29 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+# Common properties of an IOSF sideband agent behind an Intel CSME ATT
+# sideband window (child of an "intel,csme-att" node).
+
+include: base.yaml
+
+on-bus: intel-csme-sb
+
+properties:
+  reg:
+    required: true
+    description: Engine address range the sideband window maps
+
+  intel,sb-port:
+    type: int
+    required: true
+    description: Sideband port of the agent
+
+  intel,sb-flags:
+    type: int
+    default: 0
+    description: Sideband flags byte (selects the agent's register space)
+
+  intel,sb-attr:
+    type: int
+    default: 0
+    description: ATT window attribute word for this agent

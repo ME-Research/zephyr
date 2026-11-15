@@ -1,0 +1,30 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  Intel CSME 11 address translation table (ATT). Its sideband windows map
+  IOSF sideband agents of the PCH into the engine's address space; the
+  driver maps them on demand. Sideband agents are child nodes: their reg is
+  the engine address range the window maps, their sideband port and flags
+  come from intel,csme-sb-device.yaml.
+
+compatible: "intel,csme-att"
+
+include: base.yaml
+
+bus: intel-csme-sb
+
+properties:
+  reg:
+    required: true
+
+  reg-names:
+    required: true
+    description: |
+      "primary": the primary (MMIO) windows; "sideband": the sideband
+      windows, 0x20 bytes each.
+
+  sideband-windows:
+    type: int
+    required: true
+    description: Number of sideband windows

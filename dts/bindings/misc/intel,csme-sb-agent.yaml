@@ -1,0 +1,11 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  An IOSF sideband agent reached through an Intel CSME ATT sideband window
+  that has no driver of its own; software reads and writes it with the ATT
+  helpers (intel_csme_att_sb_read32() and friends).
+
+compatible: "intel,csme-sb-agent"
+
+include: intel,csme-sb-device.yaml

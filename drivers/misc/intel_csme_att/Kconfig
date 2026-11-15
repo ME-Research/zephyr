@@ -1,0 +1,18 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config INTEL_CSME_ATT
+	bool "Intel CSME ATT sideband windows"
+	default y
+	depends on DT_HAS_INTEL_CSME_ATT_ENABLED
+	help
+	  Maps IOSF sideband agents of the PCH into the CSME's address space
+	  through the address translation table's sideband windows, on demand.
+	  Drivers of sideband agents use it.
+
+config INTEL_CSME_ATT_INIT_PRIORITY
+	int "Intel CSME ATT init priority"
+	default 10
+	depends on INTEL_CSME_ATT
+	help
+	  Must come before the drivers of sideband agents.
