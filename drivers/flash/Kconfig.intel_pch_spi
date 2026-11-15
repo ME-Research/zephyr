@@ -1,0 +1,16 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+config FLASH_INTEL_PCH_SPI
+	bool "Intel PCH SPI flash controller (CSME view)"
+	default y
+	depends on DT_HAS_INTEL_PCH_SPI_FLASH_ENABLED
+	select FLASH_HAS_DRIVER_ENABLED
+	select FLASH_HAS_EXPLICIT_ERASE
+	select FLASH_HAS_PAGE_LAYOUT
+	select FLASH_HAS_EX_OP
+	select FLASH_JESD216
+	help
+	  The Intel PCH's SPI flash controller as the CSME drives it:
+	  hardware-sequenced reads, writes and 4 KiB erases, the flash
+	  descriptor's regions, and the RPMC a component offers.

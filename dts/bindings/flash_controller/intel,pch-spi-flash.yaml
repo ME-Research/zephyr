@@ -1,0 +1,16 @@
+# Copyright The Zephyr Project Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  Intel PCH SPI flash controller as the CSME drives it: BAR0 of PCI
+  function 0:19.0 in the CSME root space. Offsets are linear flash
+  addresses, the flash descriptor at 0; the components and their sizes
+  come from the descriptor.
+
+compatible: "intel,pch-spi-flash"
+
+include: base.yaml
+
+properties:
+  reg:
+    required: true
