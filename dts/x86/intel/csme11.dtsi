@@ -51,6 +51,116 @@
 			clock-frequency = <1000000000>;
 		};
 
+		/* PCH PMC: root space 0:1a.0 (BAR0 registers, BAR1 SRAM) */
+		pmc: pmc@f461a000 {
+			compatible = "intel,pch-pmc";
+			reg = <0xf461a000 0x1000>, <0xf4628000 0x4000>, <0xe00d0000 0x1000>;
+			reg-names = "regs", "sram", "cfg";
+		};
+
+		/* HECI functions, engine side (fixed BARs on the private bus) */
+		heci1: heci@f0080000 {
+			compatible = "intel,csme-heci";
+			reg = <0xf0080000 0x1000>;
+		};
+
+		heci2: heci@f0088000 {
+			compatible = "intel,csme-heci";
+			reg = <0xf0088000 0x1000>;
+		};
+
+		heci3: heci@f00d8000 {
+			compatible = "intel,csme-heci";
+			reg = <0xf00d8000 0x1000>;
+		};
+
+		/* CSME control (GEN): power-gate control, fabric drain */
+		gen: syscon@f00b1000 {
+			compatible = "syscon";
+			reg = <0xf00b1000 0x1000>;
+		};
+
+		/* PCI functions the CSME kernel quiesces before a power transition
+		 * (its device order), configuration space in the root ECAM or,
+		 * for the last two, on the private bus
+		 */
+		smt0: pci-function@e0050000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xe0050000 0x1000>;
+		};
+
+		smt1: pci-function@e0051000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xe0051000 0x1000>;
+		};
+
+		smt2: pci-function@e0052000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xe0052000 0x1000>;
+			bar = <0xf4622000>;
+			intel,smbus;
+		};
+
+		pci-function@e0053000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xe0053000 0x1000>;
+		};
+
+		pci-function@e0054000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xe0054000 0x1000>;
+		};
+
+		pci-function@e0055000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xe0055000 0x1000>;
+		};
+
+		pci-function@e0060000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xe0060000 0x1000>;
+		};
+
+		pci-function@e0058000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xe0058000 0x1000>;
+		};
+
+		pci-function@e0048000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xe0048000 0x1000>;
+		};
+
+		pci-function@e0070000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xe0070000 0x1000>;
+		};
+
+		pci-function@e0068000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xe0068000 0x1000>;
+		};
+
+		pci-function@e0069000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xe0069000 0x1000>;
+		};
+
+		pci-function@e0040000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xe0040000 0x1000>;
+		};
+
+		cpu_channel_cfg: pci-function@f1004000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xf1004000 0x1000>;
+		};
+
+		ish_ipc_cfg: pci-function@f100a000 {
+			compatible = "intel,csme-pci-function";
+			reg = <0xf100a000 0x1000>;
+		};
+
 		/* Address translation table: primary and sideband windows. The
 		 * sideband agents below are mapped on demand at these addresses
 		 * (the ones the CSME kernel uses).
